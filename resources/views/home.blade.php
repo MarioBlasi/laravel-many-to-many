@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="my_container ">
         <div class="container">
-            <h1 class="text-uppercase text-center py-3 display-3 text-white ">Home</h1>
+            <button><a href="{{ route('admin.create') }}">Crea</a></button>
+            <button><a href="{{ route('admin.dashboard') }}">Dashboard</a></button>
+            <button><a href="{{ route('admin.edit') }}">Modifica</a></button>
+            <button><a href="{{ route('admin.index') }}">Visualizza elenco</a></button>
+            <button><a href="{{ route('admin.show') }}">Visualizza dettagli</a></button>
+            <h1 class="text-uppercase text-center  display-3 p-5 rounded shadow ">Home</h1>
         
                 @forelse ($postList as $post)
-                <div class="table-responsive">
+                <div class="table-responsive mt-5 rounded shadow ">
                     <table class="table table-striped
                     table-hover	
                     table-borderless
@@ -24,16 +30,16 @@
                             <tbody class="table-group-divider">
                 
                                 {{-- @forelse ($posts as $post) --}}
-                                <tr class="table-info" >
+                                <tr class="table">
                                     <td scope="row">{{$post->id}}</td>
                                     <td><img height="100" src="{{$post->cover_image}}" alt="{{$post->title}}"></td>
                                     <td>{{$post->title}}</td>
                                     <td>{{$post->slug}}</td>
                                     <td>
-                                        <a class="btn btn-warning" href="{{route('admin.posts.show', $post->slug)}}"><i class="fas fa-eye fa-sm fa-fw"></i></a>
-                                        <a class="btn btn-secondary" href="{{route('admin.posts.edit', $post->slug)}}"><i class="fas fa-pencil fa-sm fa-fw"></i></a>
+                                        <a class="btn btn-warning btn-lg" href="{{route('admin.posts.show', $post->slug)}}"><i class="fas fa-eye fa-sm fa-fw"></i></a>
+                                        <a class="btn btn-secondary btn-lg" href="{{route('admin.posts.edit', $post->slug)}}"><i class="fas fa-pencil fa-sm fa-fw"></i></a>
                                         <!-- Modal trigger button -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{$post->id}}">
+                                        <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modalId-{{$post->id}}">
                                           <i class="fas fa-trash fa-sm fa-fw"></i>
                                         </button>
                                         
@@ -55,7 +61,7 @@
                                                         <form action="{{route('admin.posts.destroy', $post)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Confirm</button>
+                                                        <button type="submit" class="btn btn-danger ">Confirm</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -64,9 +70,9 @@
                                     </td>
                                 </tr>
                                 {{-- @empty --}}
-                                <tr class="table-info" >
+                                {{-- <tr class="table-info" >
                                     <td scope="row">No POST</td>
-                                </tr>
+                                </tr> --}}
                                 {{-- @endforelse --}}
                             </tbody>
                             <tfoot>

@@ -10,7 +10,7 @@ class PageController extends Controller
 
 {
     public function index(){
-        $postList = post::all();
+        $postList = Post::all();
         return view('home', compact('postList'));
         // return view('admin.dashboard');
     }
