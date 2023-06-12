@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Tecnology;
+use Illuminate\Contacts\Cache\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -116,13 +117,31 @@ class PostController extends Controller
 
         $val_data['slug'] = $slug;
 
+
+
+
+        if($request->hasFile('cover_image')){
+
+            if($post->cover_image){
+                Storage::delete($post->cover_image);
+            }
+
+            $image_path = Storage::put('uploads', $request->cover_image);
+
+            $val_data['cover_image'] = $image_path;
+        }
+
+
+
+
+
         $post->update($val_data);
 
         if ($request->has('technologies')) {
             $post->technologies()->sync($request->technologies);
         }
         
-        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Update');
+        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Updated');
     }
 
     /**
@@ -133,7 +152,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if($post->cover_image){
+            Storage::delete($post->cover_image);
+        }
+
         $post->delete();
-        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Delete');
+        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Deleted');
     }
 }
