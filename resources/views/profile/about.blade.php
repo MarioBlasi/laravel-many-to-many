@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
     <main class="bg-dark text-light">
@@ -6,4 +6,4 @@
             <h1>About page</h1>
         </div>
     </main>
-@endsection
+@endsection --}}

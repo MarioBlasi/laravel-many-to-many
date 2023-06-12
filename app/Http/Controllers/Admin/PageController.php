@@ -14,11 +14,12 @@ class PageController extends Controller
         return view('home', compact('postList'));
         // return view('admin.dashboard');
     }
-    public function about(){
-        return view('about');
-    }
-    public function contact(){
-        return view('contact');
-    }
+    
+    // public function welcome(){
+    //     return view('welcome');
+    // }
+    // public function contact(){
+    //     return view('contact');
+    // }
 }
 

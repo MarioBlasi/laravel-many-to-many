@@ -13,6 +13,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+// Route::get('/admin', function () {
+//     return view('admin');
+// })->name('admin');
+
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [PageController::class, 'index'])->name('dashboard');

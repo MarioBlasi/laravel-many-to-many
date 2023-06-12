@@ -4,11 +4,11 @@
 
     <div class="my_container ">
         <div class="container">
-            <button><a href="{{ route('admin.create') }}">Crea</a></button>
+            {{-- <button><a href="{{ route('admin.create') }}">Crea</a></button>
             <button><a href="{{ route('admin.dashboard') }}">Dashboard</a></button>
             <button><a href="{{ route('admin.edit') }}">Modifica</a></button>
             <button><a href="{{ route('admin.index') }}">Visualizza elenco</a></button>
-            <button><a href="{{ route('admin.show') }}">Visualizza dettagli</a></button>
+            <button><a href="{{ route('admin.show') }}">Visualizza dettagli</a></button> --}}
             <h1 class="text-uppercase text-center  display-3 p-5 rounded shadow ">Home</h1>
         
                 @forelse ($postList as $post)
