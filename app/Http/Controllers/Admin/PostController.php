@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Tecnology;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -18,7 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::orderByDesc('id')->paginate(8);
+
+        $post = Auth::user()->posts()->orderByDesc('id')->paginate(8);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -50,6 +53,16 @@ class PostController extends Controller
         $slug = Post::generateSlug($val_data['title']);
         
         $val_data['slug'] = $slug;
+
+        $val_data['user_id'] = Auth::id();
+
+        if($request->hasFile('cover_image')){
+            $image_path = Storage::put('uploads', $request->cover_image);
+            $val_data['cover_image'] = $image_path;
+
+        }
+
+
 
         // create the new post
         $new_post = Post::create($val_data);

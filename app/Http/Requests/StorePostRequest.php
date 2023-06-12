@@ -24,8 +24,8 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', Rule::unique('posts', 'title')->ignore($this->post),'max:150'],
-            'cover_image' => ['nullable', 'max:255'],
+            'title' => ['required', 'unique:posts','max:150'],
+            'cover_image' => ['nullable', 'image', 'max:955'],
             'content' => ['nullable'],
             'category_id' => ['exists:categories,id'],
             'technologies' => ['exists:technologies,id']

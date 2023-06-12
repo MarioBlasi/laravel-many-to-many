@@ -30,7 +30,10 @@
                 @forelse ($posts as $post)
                 <tr class="table-info" >
                     <td scope="row">{{$post->id}}</td>
-                    <td><img height="100" src="{{$post->cover_image}}" alt="{{$post->title}}"></td>
+                    <td>
+                        ('uploads', $request->cover_image);
+                        <img height="100" src="{{ asset('storage/' - $post->cover_image) }}" alt="{{$post->title}}">
+                    </td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->slug}}</td>
                     <td>

@@ -6,7 +6,7 @@
 
 @include('partials.validation_errors')
 
-<form action="{{ route('admin.posts.store') }}" method="post">
+<form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
@@ -53,8 +53,9 @@
 
     <div class="mb-3">
         <label for="cover_image" class="form-label"><strong>Image</strong> </label>
-        <input type="text"
-        class="form-control @error('cover_image') is-invalid @enderror" name="cover_image" id="cover_image" aria-describedby="cover_imagehelpId" placeholder="Learn php">
+        <input type="file"
+        class="form-control @error('cover_image') is-invalid @enderror"
+         name="cover_image" id="cover_image" aria-describedby="cover_imagehelpId" placeholder="Learn php">
         <small id="cover_imagehelpId" class="form-text text-muted">Type the post cover_image max 150 characters - must be unique</small>
     </div>
     {{-- cover_image --}}
