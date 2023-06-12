@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             // Add the column first
-            $table->unsignedBigInteger('category_id')->nullable()->after('id');
+            $table->unsignedBigInteger('category_id')
+            ->nullable()->after('id');
 
             // Add the foreign key
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('category_id')->references('id')
+            ->on('categories')->onDelete('set null');
         });
     }
 
