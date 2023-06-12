@@ -30,6 +30,27 @@
         </select>
     </div>
 
+
+    <div class="mb-3">
+        <p>Selezona le Tecnologie:</p>
+        @foreach (technologies as technology )
+            <div class="form-check @error('technologies') is-invalid @enderror">
+                
+                <label class="form-check-label">
+                    <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" 
+                    class="form-check-input" 
+                    {{ in_array ($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                    {{ $technology->name}}
+                </label>
+            </div>
+        @endforeach
+      
+        @error('technologies')
+        <div class="invalid-feedback">{{ $message}}</div>
+        @enderror
+    </div>
+
+
     <div class="mb-3">
         <label for="cover_image" class="form-label"><strong>Image</strong> </label>
         <input type="text"

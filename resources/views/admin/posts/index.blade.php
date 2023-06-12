@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
-{{-- @section('title', 'Post' ) --}}
 
 @section('content')
+{{-- @section('title', 'Post' ) --}}
 <h1>SHOW POST TABLE</h1>
+
 <a class="create_btn btn btn-info position-fixed bottom-0 end-0"
  href="{{route('admin.posts.create')}}" role="button">Create Post</a>
 

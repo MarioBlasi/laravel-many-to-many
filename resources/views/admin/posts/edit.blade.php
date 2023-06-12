@@ -19,17 +19,41 @@
         Type the post title max 150 characters - must be unique</small>
     </div>
     {{-- title --}}
+
     <div class="mb-3">
         <label for="category_id" class="form-label">Categories</label>
         <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
             <option value="">Select a category</option>
             @foreach ($categories as $category)
-            <option value="{{$category->id}}" 
-            {{$category->id == old('category_id','') ? 'selected' : '' }}>
-            {{$category->name}}</option>
+            <option value="{{$category?->id}}"  {{$category?->id == old('category_id',
+            $post->categoty?->id) ? 'selected' : '' }}>{{$category?->name}}</option>
+            
             @endforeach
         </select>
     </div>
+
+    <div class="mb-3">
+        <p>Selezona le Tecnologie:</p>
+        @foreach (technologies as technology )
+        <div class="form-check @error('technologies') is-invalid @enderror">
+            <label class="form-check-label">        
+                @if($error->any())
+                <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" class="form-check-input" {{ in_array ($technology->id, old('technologies',
+                [])) ? 'checked' : '' }}> 
+                @else
+                <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" class="form-check-input" {{ $post->technologies->contains($technologies) ?
+                'checked' : '' }}>  
+                 @endif  
+            </label> 
+            {{ technology->name }}
+        </div>
+        @endforeach
+        @error('technologies')
+        <div class="invalid-feedback">{{ $message}}</div>
+        @enderror
+    </div>
+    
+
     {{-- category --}}
     <div class="mb-3">
         <label for="cover_image" class="form-label"><strong>Image</strong> </label>

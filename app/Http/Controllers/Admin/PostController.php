@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tecnology;
 
 class PostController extends Controller
 {
@@ -30,7 +31,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::orderByDesc('id')->get();
-        return view('admin.posts.create', compact('categories'));
+        $technologies = Tecnology::orderByDesc('id')->get();
+
+        return view('admin.posts.create', compact('categories','technologies'));
     }
 
     /**
@@ -45,10 +48,18 @@ class PostController extends Controller
         $val_data = $request->validate();
         // generate the title slug
         $slug = Post::generateSlug($val_data['title']);
+        
         $val_data['slug'] = $slug;
+
         // create the new post
-        Post::create($val_data);
+        $new_post = Post::create($val_data);
         // redirect back
+        
+        // Attach the checked tags
+        if ($request->has('technologies')) {
+            $new_post->technologies()->attach($request->technologies);
+        }
+        // redirect to_route
         return to_route('admin.posts.index')->with('message', 'Post Created Successfully');
     }
 
@@ -72,7 +83,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::orderByDesc('id')->get();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $technologies = Technology::orderByDesc('id')->get();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'technologies'));
     }
 
     /**
@@ -92,6 +105,10 @@ class PostController extends Controller
 
         $post->update($val_data);
 
+        if ($request->has('technologies')) {
+            $post->technologies()->sync($request->technologies);
+        }
+        
         return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Update');
     }
 
