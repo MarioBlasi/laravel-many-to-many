@@ -24,3 +24,4 @@
     </div>
 </div>
 @endsection
+<h1>DASHBOARD</h1>

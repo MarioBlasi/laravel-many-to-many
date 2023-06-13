@@ -2,7 +2,7 @@
 
 
 @section('content')
-{{-- @section('title', 'Post' ) --}}
+
 <h1>SHOW POST TABLE</h1>
 
 <a class="create_btn btn btn-info position-fixed bottom-0 end-0"
@@ -39,13 +39,12 @@
                     <td>
                         <a class="btn btn-prymary" href="{{route('admin.posts.show', $post->slug)}}"><i class="fas fa-eye fa-sm fa-fw"></i></a>
                         <a class="btn btn-secondary" href="{{route('admin.posts.edit', $post->slug)}}"><i class="fas fa-pencil fa-sm fa-fw"></i></a>
-                        <!-- Modal trigger button -->
+                   
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{$post->id}}">
                           <i class="fas fa-trash fa-sm fa-fw"></i>
                         </button>
                         
-                        <!-- Modal Body -->
-                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                       
                         <div class="modal fade" id="modal-{{$post->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" 
                             role="dialog" aria-labelledby="modalTitleId-{{$post->id}}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
@@ -82,6 +81,6 @@
 </div>
 
 @endsection
-
+<h1>INDEX</h1>
 
 

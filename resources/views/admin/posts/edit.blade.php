@@ -18,7 +18,7 @@
     <small id="titlehelpId" class="form-text text-muted">
         Type the post title max 150 characters - must be unique</small>
     </div>
-    {{-- title --}}
+
 
     <div class="mb-3">
         <label for="category_id" class="form-label">Categories</label>
@@ -54,7 +54,7 @@
     </div>
     
 
-    {{-- category --}}
+ 
 
     <div class="d-flex">
         <img with="100" src="{{asset('storage/' . $post->cover_image)}}" alt="">
@@ -67,7 +67,7 @@
             <small id="cover_imagehelpId" class="form-text text-muted">Type the post cover_image max 950k </small>
         </div>
     </div>
-    {{-- cover_image --}}
+
    <div class="mb-3">
      <label for="content" class="form-label"><strong>Content</strong> </label>
      <textarea class="form-control @error('content') is-invalid @enderror" name="content" 
@@ -77,3 +77,4 @@
    <button type="submit" class="btn btn-primary">Update</button>
 @endsection
 
+<h1>EDIT</h1>

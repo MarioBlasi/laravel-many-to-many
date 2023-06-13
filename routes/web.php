@@ -13,39 +13,38 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-// Route::get('/admin', function () {
-//     return view('admin');
-// })->name('admin');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/create', [PageController::class, 'create']);
     Route::get('/', [PageController::class, 'index'])->name('dashboard');
     Route::resource('posts',PageController::class)->parameters(['posts' => 'post:slug']);
     Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 Route::get('/admin/create', function () {
-    return view('posts.admin.create');
-})->name('admin.create');
+    return view('admin.posts.create');
+})->name('admin.posts.create');
+
 
 Route::get('/admin/dashboard', function () {
-    return view('posts.admin.dashboard');
-})->name('admin.dashboard');
+    return view('admin.posts.dashboard');
+})->name('admin.posts.dashboard');
 
 Route::get('/admin/edit', function () {
-    return view('posts.admin.edit');
-})->name('admin.edit');
+    return view('admin.posts.edit');
+})->name('admin.posts.edit');
 
 Route::get('/admin/index', function () {
-    return view('posts.admin.index');
-})->name('admin.index');
+    return view('admin.posts.index');
+})->name('admin.posts.index');
 
 Route::get('/admin/show', function () {
-    return view('posts.admin.show');
-})->name('admin.show');
-
+    return view('admin.posts.show');
+})->name('admin.posts.show');
 
 
 

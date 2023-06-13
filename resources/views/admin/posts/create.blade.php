@@ -15,7 +15,7 @@
         class="form-control @error('title') is-invalid @enderror" name="title" id="title" aria-describedby="titlehelpId" placeholder="Learn php">
     <small id="titlehelpId" class="form-text text-muted">Type the post title max 150 characters - must be unique</small>
     </div>
-    {{-- title --}}
+    
 
     <div class="mb-3">
         <label for="category_id" class="form-label">Categories</label>
@@ -58,7 +58,7 @@
          name="cover_image" id="cover_image" aria-describedby="cover_imagehelpId" placeholder="Learn php">
         <small id="cover_imagehelpId" class="form-text text-muted">Type the post cover_image max 150 characters - must be unique</small>
     </div>
-    {{-- cover_image --}}
+  
    <div class="mb-3">
      <label for="content" class="form-label"><strong>Content</strong> </label>
      <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content" rows="3"></textarea>
@@ -66,5 +66,5 @@
 
    <button type="submit" class="btn btn-primary">Save</button>
 @endsection
-
+<h1>CREATE</h1>
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-{{-- @section('title', '' ) --}}
+
 
 @section('content')
 
@@ -26,3 +26,4 @@
 @endsection
 
 
+<h1>SHOW</h1>

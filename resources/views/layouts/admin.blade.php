@@ -73,7 +73,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{Route::currentRouteName() == 'admin.Tags.index' ? 'bg-danger' : ''}}" href="{{route('admin.Tags.index')}}">>
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.Technologies.index' ? 'bg-danger' : ''}}" href="{{route('admin.Tags.index')}}">>
                                     <i class="fa-solid fa-tags"></i>
                                     Tags
                                 </a>
